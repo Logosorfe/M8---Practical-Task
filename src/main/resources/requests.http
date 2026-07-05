@@ -1,0 +1,39 @@
+### Create book
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "Dune",
+  "author": "Frank Herbert",
+  "genre": "Sci-Fi",
+  "publicationYear": 1965
+}
+
+### Get all books
+GET http://localhost:8080/api/books
+
+### Get book by ID
+GET http://localhost:8080/api/books/1
+
+### Update status
+PATCH http://localhost:8080/api/books/1/status
+Content-Type: application/json
+
+{
+  "isAvailable": false
+}
+
+### Delete book
+DELETE http://localhost:8080/api/books/1
+
+### Count books
+GET http://localhost:8080/api/books/books_number
+
+### Find by author
+GET http://localhost:8080/api/books/author/Frank Herbert
+
+### Find available
+GET http://localhost:8080/api/books/available
+
+### Find after year
+GET http://localhost:8080/api/books/after_year/2000
