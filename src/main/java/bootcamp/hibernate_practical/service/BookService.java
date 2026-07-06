@@ -31,10 +31,6 @@ public class BookService {
     }
 
     public List<BookResponse> getAllBooks() {
-        // TODO:
-        // Fetch all books from the repository
-        // Convert each Book entity into BookResponse DTO
-        // Return the list
         return bookRepository.findAll().stream()
                 .map(this::mapToResponse)
                 .toList();
@@ -45,13 +41,9 @@ public class BookService {
     }
 
     public BookResponse getBookById(Long id) {
-        // TODO
         return bookRepository.findById(id)
                 .map(this::mapToResponse)
                 .orElseThrow(() -> new BookNotFoundException(id));
-        // Find the book by its ID
-        // Throw RuntimeException if not found
-        // Convert the entity to BookResponse
     }
 
     public BookResponse updateBookStatus(Long id, UpdateBookStatus request) {
@@ -71,14 +63,12 @@ public class BookService {
     }
 
     public List<BookResponse> findByAuthor(String author) {
-        // TODO
         return bookRepository.findByAuthor(author).stream().
                 map(this::mapToResponse).
                 toList();
     }
 
     public List<BookResponse> findAvailableBooks() {
-        // TODO
         return bookRepository.findByAvailableTrue().stream().
                 map(this::mapToResponse).
                 toList();
@@ -90,8 +80,13 @@ public class BookService {
                 toList();
     }
 
+    public List<BookResponse> findByTitlePart(String titlePart) {
+        return bookRepository.findByTitlePart(titlePart).stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
     private BookResponse mapToResponse(Book book) {
-        // TODO: map Book to BookResponse
         return new BookResponse(book.getId(),
                 book.getTitle(),
                 book.getAuthor(),

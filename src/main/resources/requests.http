@@ -1,5 +1,34 @@
-### Create book
+### USER: Get all books
+GET http://localhost:8080/api/books
+Authorization: Basic user user
+
+### USER: Get book by ID
+GET http://localhost:8080/api/books/1
+Authorization: Basic user user
+
+### USER: Count books
+GET http://localhost:8080/api/books/books_number
+Authorization: Basic user user
+
+### USER: Find by author
+GET http://localhost:8080/api/books/author/Frank Herbert
+Authorization: Basic user user
+
+### USER: Find available
+GET http://localhost:8080/api/books/available
+Authorization: Basic user user
+
+### USER: Find after year
+GET http://localhost:8080/api/books/after_year/2000
+Authorization: Basic user user
+
+### USER: Partial title search
+GET http://localhost:8080/api/books/title/dun
+Authorization: Basic user user
+
+### USER: Create book
 POST http://localhost:8080/api/books
+Authorization: Basic user user
 Content-Type: application/json
 
 {
@@ -9,31 +38,80 @@ Content-Type: application/json
   "publicationYear": 1965
 }
 
-### Get all books
-GET http://localhost:8080/api/books
-
-### Get book by ID
-GET http://localhost:8080/api/books/1
-
-### Update status
+### USER: Update status
 PATCH http://localhost:8080/api/books/1/status
+Authorization: Basic user user
 Content-Type: application/json
 
 {
   "isAvailable": false
 }
 
-### Delete book
+### USER: Delete book
 DELETE http://localhost:8080/api/books/1
+Authorization: Basic user user
 
-### Count books
+### ADMIN: Create book
+POST http://localhost:8080/api/books
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "title": "Dune",
+  "author": "Frank Herbert",
+  "genre": "Sci-Fi",
+  "publicationYear": 1965
+}
+
+### ADMIN: Get all books
+GET http://localhost:8080/api/books
+Authorization: Basic admin admin
+
+### ADMIN: Get book by ID
+GET http://localhost:8080/api/books/1
+Authorization: Basic admin admin
+
+### ADMIN: Update status
+PATCH http://localhost:8080/api/books/1/status
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "isAvailable": false
+}
+
+### ADMIN: Delete book
+DELETE http://localhost:8080/api/books/1
+Authorization: Basic admin admin
+
+### ADMIN: Count books
 GET http://localhost:8080/api/books/books_number
+Authorization: Basic admin admin
 
-### Find by author
+### ADMIN: Find by author
 GET http://localhost:8080/api/books/author/Frank Herbert
+Authorization: Basic admin admin
 
-### Find available
+### ADMIN: Find available
 GET http://localhost:8080/api/books/available
+Authorization: Basic admin admin
 
-### Find after year
+### ADMIN: Find after year
 GET http://localhost:8080/api/books/after_year/2000
+Authorization: Basic admin admin
+
+### ADMIN: Partial title search
+GET http://localhost:8080/api/books/title/dun
+Authorization: Basic admin admin
+
+### Validation test
+POST http://localhost:8080/api/books
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "title": "",
+  "author": "",
+  "genre": "",
+  "publicationYear": 67
+}
