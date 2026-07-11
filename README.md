@@ -22,8 +22,9 @@ Complete all of the 'TODO' portions of the code. The finished application should
 
 ## Teacher's comments
 ``` text
-controller/BookController.java, service/BookService.java: all required endpoints are present and correctly
-delegate Controller -> Service -> Repository — createBook, getAllBooks, getBookById, deleteBook, getBooksByAuthor, getAvailableBooks, getBooksAfterYear, plus a books_number total-count endpoint and a PATCH /{id}/status endpoint for toggling availability. Verified live: all of the above work as coded.
+controller/BookController.java, service/BookService.java: all required endpoints are present and
+correctlydelegate Controller -> Service -> Repository — createBook, getAllBooks, getBookById, deleteBook,
+getBooksByAuthor, getAvailableBooks, getBooksAfterYear, plus a books_number total-count endpoint and a PATCH /{id}/status endpoint for toggling availability. Verified live: all of the above work as coded.
 service/BookService.getBookById and deleteBook: both correctly use bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id)) before acting — no silent-success bug. Verified live: GET /api/books/999 and DELETE /api/books/999 both correctly return 404 with a clear message ("Book with id 999 not found"), and a genuine delete of an existing book correctly removes it (subsequent GET on that id returns 404).
 dto/CreateBookRequest.java: clean @NotBlank on title/author/genre and @Min(867) on publicationYear, correctly wired via @Valid on the controller's @RequestBody. Verified live: POSTing blank/zero fields correctly returns 400.
 repository/BookRepository.java: findAfterYear uses a hand-written @Query with a genuine > comparison (SELECT b FROM Book b WHERE b.publicationYear > :year), not just an exact-match lookup — this correctly fulfils the "published after a given year" bonus. Verified live: after adding a 1965 and a 1984 book, /api/books/after_year/1970 correctly returned only the 1984 book.
