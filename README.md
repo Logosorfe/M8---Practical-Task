@@ -23,14 +23,14 @@ Complete all of the 'TODO' portions of the code. The finished application should
 ## Teacher's comments
 ``` text
 controller/BookController.java, service/BookService.java: all required endpoints are present and
-correctlydelegate Controller -> Service -> Repository — createBook, getAllBooks, getBookById, deleteBook,
-getBooksByAuthor, getAvailableBooks, getBooksAfterYear, plus a books_number total-count endpoint and a
-PATCH /{id}/status endpoint for toggling availability. Verified live: all of the above work as coded.
-service/BookService.getBookById and deleteBook: both correctly use
+correctlydelegate Controller -> Service -> Repository — createBook, getAllBooks, getBookById,
+deleteBook, getBooksByAuthor, getAvailableBooks, getBooksAfterYear, plus a books_number total-count
+endpoint and a PATCH /{id}/status endpoint for toggling availability. Verified live: all of the above work
+as coded. service/BookService.getBookById and deleteBook: both correctly use
 bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id)) before acting — no
-silent-success bug. Verified live: GET /api/books/999 and DELETE /api/books/999 both correctly return 404
-with a clear message ("Book with id 999 not found"), and a genuine delete of an existing book correctly
-removes it (subsequent GET on that id returns 404).
+silent-success bug. Verified live: GET /api/books/999 and DELETE /api/books/999 both correctly return
+404 with a clear message ("Book with id 999 not found"), and a genuine delete of an existing book
+correctly removes it (subsequent GET on that id returns 404).
 dto/CreateBookRequest.java: clean @NotBlank on title/author/genre and @Min(867) on publicationYear,
 correctly wired via @Valid on the controller's @RequestBody. Verified live: POSTing blank/zero fields
 correctly returns 400.
@@ -41,8 +41,8 @@ fulfils the "published after a given year" bonus. Verified live: after adding a 
 repository/BookRepository.countAll (SELECT COUNT(b) FROM Book b) + controller /api/books/books_number:
 a genuine total-book-count query, not a filtered count — correctly satisfies the "total number of books"
 bonus. Verified live: returned 2 after two books were created.
-dto/UpdateBookStatus.java: a deliberate, well-reasoned design choice to only expose the availability field
-for update, with an explanatory comment ("because by logic you can only change book's availability, I
+dto/UpdateBookStatus.java: a deliberate, well-reasoned design choice to only expose the availability
+field for update, with an explanatory comment ("because by logic you can only change book's availability, I
 removed other fields") — @NotNull is correctly enforced and verified live (a null isAvailable value
 correctly returns 400).
 Minor — leftover "// TODO" comments remain on several already-fully-implemented methods (getAllBooks,
@@ -57,8 +57,8 @@ handler and a catch-all 500 handler for defence in depth.
 Not implemented from the stated stretch goals: partial-title search. The available-books filter and the
 status-update endpoint are reasonable, simpler substitutes for "borrow/return", but there is no distinct
 borrow/return pair of endpoints with conflict (409) handling for double-borrow/double-return scenarios.
-What could have been done better: removing the stale "// TODO" comments from finished methods and adding a
-dedicated MethodArgumentNotValidException handler (returning field-level messages) plus a generic
+What could have been done better: removing the stale "// TODO" comments from finished methods and adding
+a dedicated MethodArgumentNotValidException handler (returning field-level messages) plus a generic
 Exception.class fallback in GlobalExceptionHandler would round out an already solid, correctly working
 submission. Implementing partial-title search and/or a genuine borrow/return pair with conflict handling
 would have added further bonus/kudos value.
