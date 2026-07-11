@@ -42,9 +42,9 @@ repository/BookRepository.countAll (SELECT COUNT(b) FROM Book b) + controller /a
 a genuine total-book-count query, not a filtered count — correctly satisfies the "total number of books"
 bonus. Verified live: returned 2 after two books were created.
 dto/UpdateBookStatus.java: a deliberate, well-reasoned design choice to only expose the availability
-field for update, with an explanatory comment ("because by logic you can only change book's availability,
-I removed other fields") — @NotNull is correctly enforced and verified live (a null isAvailable value
-correctly returns 400).
+field for update, with an explanatory comment ("because by logic you can only change book's
+availability, I removed other fields") — @NotNull is correctly enforced and verified live (a null
+isAvailable value correctly returns 400).
 Minor — leftover "// TODO" comments remain on several already-fully-implemented methods (getAllBooks,
 getBookById, updateBook, deleteBook, findByAuthor, findAvailableBooks, mapToResponse in both the
 controller and service) — purely cosmetic clutter left over from the starter template, with no
