@@ -4,8 +4,10 @@ Janis showed quiet courage when it mattered most. In a single moment, he chose r
 
 ## Teacher's comments
 ``` text
-Good: Clean, correct Spring Security setup - dependency, SecurityFilterChain, BCrypt users, and Basic Auth are all implemented exactly to spec.
-Good: Update endpoint (PATCH) is correctly protected as ADMIN-only, matching the intent of the PUT requirement in the task description even though your existing controller uses PATCH.
+Good: Clean, correct Spring Security setup - dependency, SecurityFilterChain, BCrypt users, and
+Basic Auth are all implemented exactly to spec.
+Good: Update endpoint (PATCH) is correctly protected as ADMIN-only, matching the intent of the PUT
+requirement in the task description even though your existing controller uses PATCH.
 No issues found in the Spring Security implementation.
 Also thank you for the branch name and added image to the README, made me chuckle
 ```
